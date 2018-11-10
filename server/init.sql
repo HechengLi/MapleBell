@@ -6,6 +6,7 @@ CREATE TABLE IF NOT EXISTS `bosstime` (
   `boss_level` INT NOT NULL,
   `spawn_location` VARCHAR(100) NOT NULL,
   `spawn_time` TINYINT NOT NULL,
+  `img` VARCHAR(100),
   PRIMARY KEY (`id`));
 
   INSERT INTO bosstime

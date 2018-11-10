@@ -30,7 +30,18 @@ Database.prototype.init = function() {
 
 Database.prototype.select = function(table, params='*') {
   const promise = new Promise((resolve, reject) => {
-    this.connection.query(`SELECT ${params} FROM ${table}`, (err, result, fields) => {
+    this.connection.query(`SELECT ${params} FROM ${table}`, (err, results, fields) => {
+      if (err) reject(err)
+      resolve(results)
+    })
+  })
+  return promise
+}
+
+Database.prototype.insert = function(table, fields, values) {
+  const promise = new Promise((resolve, reject) => {
+    console.log(`INSERT INTO ${table}(${fields}) VALUES(${values})`)
+    this.connection.query(`INSERT INTO ${table}(${fields}) VALUES(${values})`, (err, result) => {
       if (err) reject(err)
       resolve(result)
     })
