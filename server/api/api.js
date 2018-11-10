@@ -1,13 +1,18 @@
 const koaRouter = require('koa-router')
 
 const router = new koaRouter()
+let db = null;
+
+function setDB(newDB) {
+  db = newDB
+}
 
 router
-  .get('/', (ctx, next) => {
-    ctx.body = 'Hello World'
-  })
-  .get('/test', (ctx, next) => {
-    ctx.body = 'test'
+  .post('/bosstime', async (ctx, next) => {
+    await db.select('bosstime').then(data => {
+      ctx.body = data
+    })
   })
 
-module.exports = router
+module.exports.router = router
+module.exports.setDB = setDB

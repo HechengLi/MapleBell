@@ -1,14 +1,18 @@
 'use strict'
 
 const koa = require('koa')
-const router = require('./api/api')
-const initDB = require('./api/db')
+const api = require('./api/api')
+const Database = require('./api/db')
 
-const app = module.exports = new koa()
+const app = new koa()
 
-initDB()
+const db = new Database('localhost', 'root', '19930326')
+db.init().then(() => {api.setDB(db)})
 
+const router = api.router
 app.use(router.routes())
   .use(router.allowedMethods())
 
 app.listen(8081, () => {console.log('listening on port 8081')})
+
+module.exports = 1
