@@ -2,10 +2,13 @@
 
 const koa = require('koa')
 const bodyParser = require('koa-bodyparser')
+const cors = require('@koa/cors')
+
 const api = require('./api/api')
 const Database = require('./api/db')
 
 const app = new koa()
+app.use(cors())
 app.use(bodyParser())
 
 const db = new Database('localhost', 'root', '19930326')
