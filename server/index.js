@@ -1,18 +1,12 @@
 'use strict'
 
 const koa = require('koa')
-const koaRouter = require('koa-router')
+const router = require('./api/api')
+const initDB = require('./api/db')
 
 const app = module.exports = new koa()
-const router = new koaRouter()
 
-router
-  .get('/', (ctx, next) => {
-    ctx.body = 'Hello World'
-  })
-  .get('/test', (ctx, next) => {
-    ctx.body = 'test'
-  })
+initDB()
 
 app.use(router.routes())
   .use(router.allowedMethods())
