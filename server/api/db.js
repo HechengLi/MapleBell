@@ -10,22 +10,23 @@ function Database(host, user, password) {
 Database.prototype.init = function() {
   const connection = mysql.createConnection({
     host: this.host,
+    database: 'MapleBell',
     user: this.user,
-    password: this.password
+    password: this.password,
+    connectionLimit: 10
   })
-
-  const _this = this
-  const promise = new Promise((resolve, reject) => {
-    connection.connect((err) => {
-      if (err) reject(err)
-      connection.query('USE MapleBell')
-      _this.connection = connection
-      console.log('Database connected')
-      resolve()
-    })
-  })
-
-  return promise
+  this.connection = connection
+  // const _this = this
+  // const promise = new Promise((resolve, reject) => {
+  //   connection.connect((err) => {
+  //     if (err) reject(err)
+  //     _this.connection = connection
+  //     console.log('Database connected')
+  //     resolve()
+  //   })
+  // })
+  //
+  // return promise
 }
 
 Database.prototype.select = function(table, params='*') {

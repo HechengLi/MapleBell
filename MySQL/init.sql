@@ -1,6 +1,6 @@
 CREATE DATABASE IF NOT EXISTS MapleBell;
 USE MapleBell;
-CREATE TABLE IF NOT EXISTS `bosstime` (
+CREATE TABLE IF NOT EXISTS `boss_schedule` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `boss_name` VARCHAR(100) NOT NULL UNIQUE,
   `boss_level` INT NOT NULL,
@@ -9,7 +9,7 @@ CREATE TABLE IF NOT EXISTS `bosstime` (
   `img` VARCHAR(100),
   PRIMARY KEY (`id`));
 
-  INSERT INTO bosstime
+  INSERT INTO boss_schedule
   	(boss_name, boss_level, spawn_location, spawn_time)
   VALUES
   	('Acreon', 50, 'Lavender Island', 5),

@@ -1,0 +1,19 @@
+version: '3.7'
+
+services:
+    mysql:
+        image: mysql:8
+        command: --default-authentication-plugin=mysql_native_password
+        container_name: mysql_service
+        restart: always
+        environment:
+            MYSQL_ROOT_PASSWORD: 19930326
+            MYSQL_DATABASE: MapleBell
+        volumes:
+            - ./MySQL:/docker-entrypoint-initdb.d
+    server:
+        build: ./server/
+        ports:
+            - 8081:8081
+        depends_on:
+            - mysql

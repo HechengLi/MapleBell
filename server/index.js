@@ -11,8 +11,10 @@ const app = new koa()
 app.use(cors())
 app.use(bodyParser())
 
-const db = new Database('localhost', 'root', '19930326')
-db.init().then(() => {api.setDB(db)})
+const db = new Database('mysql', 'root', '19930326')
+db.init()
+api.setDB(db)
+// .then(() => {api.setDB(db)})
 
 const router = api.router
 app.use(router.routes())

@@ -9,7 +9,7 @@ function setDB(newDB) {
 
 router
   .post('/getBossTime', async (ctx, next) => {
-    await db.select('bosstime').then(data => {
+    await db.select('boss_schedule').then(data => {
       ctx.body = data
     })
   })
@@ -19,7 +19,7 @@ router
       ctx.body = 'not enough info'
       return
     }
-    await db.insert('bosstime', 'boss_name, boss_level, spawn_location, spawn_time',
+    await db.insert('boss_schedule', 'boss_name, boss_level, spawn_location, spawn_time',
                     `\'${body.boss_name}\', ${body.boss_level}, \'${body.spawn_location}\', ${body.spawn_time}`).then(data => {
       console.log(data)
       ctx.body = 'success'
