@@ -11,7 +11,8 @@ const app = new koa()
 app.use(cors())
 app.use(bodyParser())
 
-const db = new Database('mysql', 'root', '19930326')
+const db = new Database('mysql', 'root', '19930326') // docker
+// const db = new Database('localhost', 'root', '19930326') // local
 db.init()
 api.setDB(db)
 // .then(() => {api.setDB(db)})
