@@ -1,16 +1,15 @@
 <template>
-  <div>
-    <ul>
-      <li v-for="item in data" v-bind:key="item.boss_name">
-        {{item.boss_name}}, Lv.{{item.boss_level}}, {{item.spawn_location}}, XX:{{item.spawn_time}}
-      </li>
-    </ul>
-  </div>
+  <article class="list-container">
+    <BossInfo v-for="item in data" v-bind:bossInfo="item" v-bind:key="item.boss_name" />
+  </article>
 </template>
 
 <script>
+import BossInfo from '../components/BossInfo.vue'
 export default {
-  name: 'app',
+	components: {
+		BossInfo
+	},
   data() {
     return {
       data: []
@@ -43,3 +42,9 @@ export default {
   }
 }
 </script>
+
+<style lang="scss" scoped>
+.list-container {
+
+}
+</style>

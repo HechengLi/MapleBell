@@ -1,0 +1,28 @@
+$nav-height: 40px;
+.nav-container {
+  position: fixed;
+  height: $nav-height;
+  width: 100%;
+  top: 0;
+  left: 0;
+  background-color: rgb(250, 250, 251);
+  box-shadow: 0 1px 0 rgba(12, 13, 14, 0.1), 0 1px 6px rgba(59, 64, 69, 0.1);
+
+  .nav {
+    display: flex;
+    height: 100%;
+    max-width: 1264px;
+    margin: auto;
+
+    .nav__link {
+      padding: 0 10px;
+      line-height: $nav-height;
+      background-color: rgba(239, 240, 241, 0);
+      transition: background-color 0.35s ease;
+
+      &:hover {
+        background-color: rgba(239, 240, 241, 1);
+      }
+    }
+  }
+}

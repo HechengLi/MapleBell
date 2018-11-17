@@ -1,0 +1,35 @@
+.list-item__container {
+  display: inline-block;
+  height: 125px;
+  width: 25%;
+  padding: 5px;
+  vertical-align: middle;
+
+  .list-item {
+    display: flex;
+    flex-wrap: wrap;
+    height: 100%;
+    width: 100%;
+    text-indent: 17px;
+    border: 1px solid rgba(12, 13, 14, 0.1);
+
+    .list-item__title {
+      height: 30px;
+      width: 100%;
+      line-height: 30px;
+      font-weight: bold;
+      font-size: 18px;
+      box-shadow: 0 1px 0 rgba(12, 13, 14, 0.1), 0 1px 6px rgba(59, 64, 69, 0.1);
+    }
+
+    .list-item__body {
+      text-indent: -69px;
+      padding-left: 86px;
+      padding-right: 17px;
+
+      & > p {
+        margin: 5px 0;
+      }
+    }
+  }
+}

@@ -1,6 +1,6 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import Test from './views/Test.vue'
+import BossSchedule from './views/BossSchedule.vue'
 
 Vue.use(Router)
 
@@ -10,8 +10,12 @@ export default new Router({
   routes: [
     {
       path: '/',
-      name: 'test',
-      component: Test
+      redirect: '/boss_schedule'
+    },
+    {
+      path: '/boss_schedule',
+      name: 'boss_schedule',
+      component: BossSchedule
     }
   ]
 })
