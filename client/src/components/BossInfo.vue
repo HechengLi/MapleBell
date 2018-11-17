@@ -3,7 +3,7 @@
     <div class="list-item">
       <h6 class="list-item__title">
         {{bossInfo.boss_name}}
-        <span class="list-item__timer"></span>
+        <span class="list-item__timer">1min 12sec</span>
       </h6>
       <div class="list-item__body">
         <p>Lv{{bossInfo.boss_level}}</p>
