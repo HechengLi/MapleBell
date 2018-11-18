@@ -3,7 +3,7 @@
     <div class="list-item">
       <h6 class="list-item__title">
         {{bossInfo.boss_name}}
-        <span class="list-item__timer">1min 12sec</span>
+        <span class="list-item__timer">{{timer}}</span>
       </h6>
       <div class="list-item__body">
         <p>Lv{{bossInfo.boss_level}}</p>
@@ -21,10 +21,25 @@ export default {
       type: Object
     }
   },
+  data() {
+    return {
+      timer: ''
+    }
+  },
   computed: {
     fixed_spawn_time() {
       return this.bossInfo.spawn_time < 10 ? '0' + this.bossInfo.spawn_time : '' + this.bossInfo.spawn_time
     }
+  },
+  mounted() {
+    const spawnTime = this.bossInfo.spawn_time
+    setInterval(() => {
+      const date = new Date()
+      let minsLeft = spawnTime - date.getMinutes()
+      minsLeft = minsLeft > 0 ? minsLeft : minsLeft + 60
+      let secsLeft = 60 - date.getSeconds()
+      this.timer = `${minsLeft}mins ${secsLeft}secs`
+    }, 1000)
   }
 }
 </script>
