@@ -6,6 +6,7 @@
 
 <script>
 import BossInfo from '../components/BossInfo.vue'
+import url from '../api/api.js'
 export default {
 	components: {
 		BossInfo
@@ -16,7 +17,7 @@ export default {
     }
   },
   created() {
-    fetch('http://localhost:8081/getBossTime', {
+    fetch(`${url}/getBossTime`, {
         method: 'post',
         mode: 'cors',
         headers: {

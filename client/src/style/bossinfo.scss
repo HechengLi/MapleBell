@@ -1,6 +1,6 @@
 .list-item__container {
   display: inline-block;
-  height: 125px;
+  height: 140px;
   width: 25%;
   padding: 5px;
   vertical-align: middle;
@@ -19,23 +19,35 @@
       line-height: 30px;
       font-weight: bold;
       font-size: 18px;
+      background-color: #fafafb;
       box-shadow: 0 1px 0 rgba(12, 13, 14, 0.1), 0 1px 6px rgba(59, 64, 69, 0.1);
 
-      .list-item__timer {
+      .list-item__level {
         margin-right: 17px;
         float: right;
         font-weight: lighter;
-        font-size: 14px;
+        font-size: 15px;
       }
     }
 
     .list-item__body {
+      position: relative;
+      width: 100%;
       text-indent: -69px;
       padding-left: 86px;
-      padding-right: 17px;
+      padding-right: 55px;
 
       & > p {
         margin: 5px 0;
+      }
+
+      .list-item__image {
+        text-indent: 0;
+        padding: 0px;
+        position: absolute;
+        top: 40%;
+        right: 10px;
+        transform: translateY(-50%);
       }
     }
   }

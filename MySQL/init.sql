@@ -26,7 +26,7 @@ CREATE TABLE IF NOT EXISTS `boss_schedule` (
     ('Lernos', 40, 'Twilight Moon Castle', 45),
     ('Lo and Moomoo', 32, 'Baum Tree', 5),
     ('MK 52 Alpha', 27, 'Neuron DNA Research Center', 45),
-    ('Pkanos', 47, 'Fractured Canon', 55),
+    ('Pekanos', 47, 'Fractured Canon', 55),
     ('Toh and Googoo', 43, 'Whistler Cliffs', 25),
     ('Ureus', 50, 'Nazkar Pyramid', 15),
     ('Vayar Gatekeeper', 35, 'Precipice Fortress', 35)

@@ -3,12 +3,13 @@
     <div class="list-item">
       <h6 class="list-item__title">
         {{bossInfo.boss_name}}
-        <span class="list-item__timer">{{timer}}</span>
+        <span class="list-item__level">Lv{{bossInfo.boss_level}}</span>
       </h6>
       <div class="list-item__body">
-        <p>Lv{{bossInfo.boss_level}}</p>
         <p>Location: {{bossInfo.spawn_location}}</p>
         <p>Spawn Time: XX:{{fixed_spawn_time}}</p>
+        <p>Next Spawn: {{timer}}</p>
+        <img class="list-item__image" v-bind:src="require(`@/assets/${this.bossInfo.boss_name}.png`)" width="45" height="45" />
       </div>
     </div>
   </section>
@@ -35,10 +36,10 @@ export default {
     const spawnTime = this.bossInfo.spawn_time
     setInterval(() => {
       const date = new Date()
-      let minsLeft = spawnTime - date.getMinutes()
+      let minsLeft = spawnTime - date.getMinutes() - 1
       minsLeft = minsLeft > 0 ? minsLeft : minsLeft + 60
       let secsLeft = 60 - date.getSeconds()
-      this.timer = `${minsLeft}mins ${secsLeft}secs`
+      this.timer = `${minsLeft}m ${secsLeft}s`
     }, 1000)
   }
 }
