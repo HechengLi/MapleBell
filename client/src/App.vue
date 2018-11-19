@@ -22,5 +22,6 @@ export default {
   max-width: 1264px;
   margin: auto;
   padding-top: 40px;
+  overflow: hidden;
 }
 </style>

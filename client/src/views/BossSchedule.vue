@@ -46,6 +46,7 @@ export default {
 
 <style lang="scss" scoped>
 .list-container {
-
+  height: 100%;
+  overflow: auto;
 }
 </style>
