@@ -1,6 +1,13 @@
 <template>
   <article class="list-container">
-    <BossInfo v-for="item in data" v-bind:bossInfo="item" v-bind:key="item.boss_name" />
+    <section>
+      <h3 class="list-title list-active">Active</h3>
+      <BossInfo v-for="item in activeBosses" v-bind:bossInfo="item" v-bind:active="true" v-bind:key="item.boss_name" />
+    </section>
+    <section>
+      <h3 class="list-title">Waiting</h3>
+      <BossInfo v-for="item in inactiveBosses" v-bind:bossInfo="item" v-bind:active="false" v-bind:key="item.boss_name" />
+    </section>
   </article>
 </template>
 
@@ -40,6 +47,26 @@ export default {
       .catch(err => {
         console.log('Fetch Error :-S', err)
       })
+  },
+  computed: {
+    activeBosses() {
+      return this.data.filter(n => {
+        const spawnTime = n.spawn_time
+        const date = new Date()
+        let minsLeft = spawnTime - date.getMinutes() - 1
+        minsLeft = minsLeft > 0 ? minsLeft : minsLeft + 60
+        return minsLeft >= 50
+      })
+    },
+    inactiveBosses() {
+      return this.data.filter(n => {
+        const spawnTime = n.spawn_time
+        const date = new Date()
+        let minsLeft = spawnTime - date.getMinutes() - 1
+        minsLeft = minsLeft > 0 ? minsLeft : minsLeft + 60
+        return minsLeft < 50
+      })
+    }
   }
 }
 </script>
@@ -48,5 +75,16 @@ export default {
 .list-container {
   height: 100%;
   overflow: auto;
+
+  .list-title {
+    padding: 5px;
+    padding-bottom: 0;
+    font-size: 20px;
+    font-weight: bold;
+  }
+
+  .list-active {
+    color: rgb(0, 255, 0);
+  }
 }
 </style>
