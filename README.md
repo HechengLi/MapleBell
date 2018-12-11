@@ -4,4 +4,4 @@ TODO:
 - Make discord bot reminder
 
 Bug Fix:
-- MySql connection drop after idle for some time
+- ~~MySql connection drop after idle for some time~~ Fixed
