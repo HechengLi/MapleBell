@@ -8,7 +8,8 @@
       <div class="list-item__body">
         <p>Location: {{bossInfo.spawn_location}}</p>
         <p>Spawn Time: XX:{{fixed_spawn_time}}</p>
-        <p>Spawn In: {{timer}}</p>
+        <p class="list-item__inactive-timer">Spawn In: {{inactive_timer}}</p>
+        <p class="list-item__active-timer">Despawn In: {{active_timer}}</p>
         <img class="list-item__image" v-bind:src="require(`@/assets/${this.bossInfo.boss_name}.png`)" width="45" height="45" />
       </div>
     </div>
@@ -16,6 +17,8 @@
 </template>
 
 <script>
+import { EventBus } from '../event/eventbus.js';
+
 export default {
   props: {
     bossInfo: {
@@ -27,7 +30,8 @@ export default {
   },
   data() {
     return {
-      timer: ''
+      inactive_timer: '',
+      active_timer: ''
     }
   },
   computed: {
@@ -38,12 +42,13 @@ export default {
   mounted() {
     const spawnTime = this.bossInfo.spawn_time
     setInterval(() => {
-      console.log(this.active)
       const date = new Date()
-      let minsLeft = spawnTime - date.getMinutes() - 1
-      minsLeft = minsLeft > 0 ? minsLeft : minsLeft + 60
-      let secsLeft = 60 - date.getSeconds() - 1
-      this.timer = `${minsLeft}m ${secsLeft}s`
+      let minsLeft = spawnTime - date.getMinutes()
+      minsLeft = minsLeft > 0 ? minsLeft : minsLeft + 59
+      let secsLeft = 59 - date.getSeconds()
+      this.inactive_timer = `${minsLeft}m ${secsLeft}s`
+      this.active_timer = `${minsLeft - 50}m ${secsLeft}s`
+      EventBus.$emit('shuffle')
     }, 1000)
   }
 }

@@ -14,13 +14,17 @@
 <script>
 import BossInfo from '../components/BossInfo.vue'
 import url from '../api/api.js'
+import { EventBus } from '../event/eventbus.js';
+
 export default {
 	components: {
 		BossInfo
 	},
   data() {
     return {
-      data: []
+      data: [],
+      activeBosses: [],
+      inactiveBosses: []
     }
   },
   created() {
@@ -41,29 +45,43 @@ export default {
           // Examine response
           response.json().then(data => {
             this.data = data
+            this.processData()
           })
         }
       )
       .catch(err => {
         console.log('Fetch Error :-S', err)
       })
+    EventBus.$on('shuffle', () => {
+      this.processData()
+    })
   },
-  computed: {
-    activeBosses() {
-      return this.data.filter(n => {
+  methods: {
+    processData() {
+      this.data.sort((a, b) => {
+        const date = new Date()
+        let minsLeft_a = a.spawn_time - date.getMinutes()
+        minsLeft_a = minsLeft_a > 0 ? minsLeft_a : minsLeft_a + 59
+
+        let minsLeft_b = b.spawn_time - date.getMinutes()
+        minsLeft_b = minsLeft_b > 0 ? minsLeft_b : minsLeft_b + 59
+
+        return minsLeft_a - minsLeft_b
+      })
+
+      this.activeBosses = this.data.filter(n => {
         const spawnTime = n.spawn_time
         const date = new Date()
-        let minsLeft = spawnTime - date.getMinutes() - 1
-        minsLeft = minsLeft > 0 ? minsLeft : minsLeft + 60
+        let minsLeft = spawnTime - date.getMinutes()
+        minsLeft = minsLeft > 0 ? minsLeft : minsLeft + 59
         return minsLeft >= 50
       })
-    },
-    inactiveBosses() {
-      return this.data.filter(n => {
+
+      this.inactiveBosses = this.data.filter(n => {
         const spawnTime = n.spawn_time
         const date = new Date()
-        let minsLeft = spawnTime - date.getMinutes() - 1
-        minsLeft = minsLeft > 0 ? minsLeft : minsLeft + 60
+        let minsLeft = spawnTime - date.getMinutes()
+        minsLeft = minsLeft > 0 ? minsLeft : minsLeft + 59
         return minsLeft < 50
       })
     }

@@ -16,6 +16,20 @@
 
     &.active {
       border-color: rgb(0, 255, 0);
+
+      .list-item__inactive-timer {
+        display: none;
+      }
+      .list-item__active-timer {
+        display: block;
+      }
+    }
+
+    .list-item__inactive-timer {
+      display: block;
+    }
+    .list-item__active-timer {
+      display: none;
     }
 
     .list-item__title {
